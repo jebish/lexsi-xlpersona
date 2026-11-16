@@ -1,0 +1,29 @@
+{
+  "schema": "lexsi.provenance/1",
+  "library": "curatorkit",
+  "version": "0.1.27",
+  "git_sha": null,
+  "created_at": "2026-11-14T12:58:04Z",
+  "base_model": null,
+  "method": "curate",
+  "inputs": [
+    {
+      "kind": "dataset",
+      "ref": "/vol/xl/curation/ne_cm_retry/ne_cm_input.jsonl",
+      "config": null,
+      "provenance": null
+    }
+  ],
+  "params": {
+    "generator_model": null,
+    "judge_model": "openai/google/gemma-3-27b-it",
+    "grpo_scoring_model": null,
+    "export_formats": [
+      "alpaca",
+      "sharegpt",
+      "messages"
+    ],
+    "output_split": null,
+    "pipeline_config_hash": "cbe9a7720647348d"
+  }
+}

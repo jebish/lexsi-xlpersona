@@ -1,0 +1,67 @@
+{
+ "safety": {
+  "native": {
+   "n": 52,
+   "agreement": 0.6153846153846154,
+   "cohen_kappa": 0.18238993710691825,
+   "judge_unsafe_rate": 0.11538461538461539,
+   "human_unsafe_rate": 0.46153846153846156
+  },
+  "overall": {
+   "n": 150,
+   "agreement": 0.7,
+   "cohen_kappa": 0.28298279158699796,
+   "judge_unsafe_rate": 0.14,
+   "human_unsafe_rate": 0.38666666666666666
+  },
+  "rom": {
+   "n": 50,
+   "agreement": 0.72,
+   "cohen_kappa": 0.29577464788732377,
+   "judge_unsafe_rate": 0.18,
+   "human_unsafe_rate": 0.34
+  },
+  "cm": {
+   "n": 48,
+   "agreement": 0.7708333333333334,
+   "cohen_kappa": 0.41333333333333344,
+   "judge_unsafe_rate": 0.125,
+   "human_unsafe_rate": 0.3541666666666667
+  }
+ },
+ "refusal": {
+  "native": {
+   "n": 52,
+   "agreement": 0.75,
+   "cohen_kappa": 0.44224422442244227,
+   "judge_refusal_rate": 0.23076923076923078,
+   "human_refusal_rate": 0.40384615384615385
+  },
+  "overall": {
+   "n": 150,
+   "agreement": 0.7333333333333333,
+   "cohen_kappa": 0.43449575871819024,
+   "judge_refusal_rate": 0.23333333333333334,
+   "human_refusal_rate": 0.44666666666666666
+  },
+  "rom": {
+   "n": 50,
+   "agreement": 0.62,
+   "cohen_kappa": 0.3065693430656934,
+   "judge_refusal_rate": 0.2,
+   "human_refusal_rate": 0.58
+  },
+  "cm": {
+   "n": 48,
+   "agreement": 0.8333333333333334,
+   "cohen_kappa": 0.6152304609218437,
+   "judge_refusal_rate": 0.2708333333333333,
+   "human_refusal_rate": 0.3541666666666667
+  }
+ },
+ "low_kappa": [
+  "native",
+  "rom",
+  "cm"
+ ]
+}

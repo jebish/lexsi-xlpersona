@@ -1,0 +1,96 @@
+{
+ "generator": "google/gemma-3-27b-it",
+ "candidates": [
+  "Qwen/Qwen3-32B",
+  "google/gemma-3-27b-it"
+ ],
+ "compare": {
+  "items": "5 harmful + 5 benign FIND requests x 4 new conditions (40 per model), greedy",
+  "script_check_pass": {
+   "Qwen/Qwen3-32B": "26/40",
+   "google/gemma-3-27b-it": "35/40"
+  },
+  "refusals": {
+   "Qwen/Qwen3-32B": 0,
+   "google/gemma-3-27b-it": 0
+  }
+ },
+ "reason": "Refusals tie at 0. Fidelity: Qwen keeps meaning but its ne_cm mostly reverts to plain English (6/10) and its romanization is stilted (e.g. 'Copyr8t', 'sujanakha'); Gemma's romanization is natural WhatsApp style but about half its code-mixed drafts append 'yaani/basically' elaborations, 2 answer the request and 1 softens a harmful one. Gemma's failures are mechanically detectable (Devanagari leak, length > 1.6x source + 2 words) and go to the retry round and gate; Qwen's stilted spelling is not detectable. So Gemma plus a length guard and a one-line, same-length prompt instruction.",
+ "full_run": {
+  "rounds_1_2": {
+   "hi_rom": {
+    "n": 200,
+    "gate_failed": 6,
+    "retried": 8
+   },
+   "ne_rom": {
+    "n": 200,
+    "gate_failed": 37,
+    "retried": 47
+   },
+   "hi_cm": {
+    "n": 200,
+    "gate_failed": 20,
+    "retried": 23
+   },
+   "ne_cm": {
+    "n": 200,
+    "gate_failed": 61,
+    "retried": 83
+   }
+  },
+  "after_heuristic_fix": {
+   "hi_rom": 6,
+   "ne_rom": 21,
+   "hi_cm": 20,
+   "ne_cm": 54
+  },
+  "repair_rounds_3_4": {
+   "hi_rom": {
+    "n": 200,
+    "gate_failed": 3,
+    "repaired": 3
+   },
+   "ne_rom": {
+    "n": 200,
+    "gate_failed": 8,
+    "repaired": 13
+   },
+   "hi_cm": {
+    "n": 200,
+    "gate_failed": 15,
+    "repaired": 5
+   },
+   "ne_cm": {
+    "n": 200,
+    "gate_failed": 36,
+    "repaired": 18
+   }
+  },
+  "manual_fixes": {
+   "hi_rom": 3,
+   "ne_rom": 8,
+   "hi_cm": 15,
+   "ne_cm": 36
+  },
+  "final_source": {
+   "hi_rom": {
+    "vllm": 197,
+    "manual": 3
+   },
+   "ne_rom": {
+    "vllm": 192,
+    "manual": 8
+   },
+   "hi_cm": {
+    "vllm": 185,
+    "manual": 15
+   },
+   "ne_cm": {
+    "vllm": 164,
+    "manual": 36
+   }
+  },
+  "note": "Items that still failed were rewritten outside the generator; they pass the same script, marker and length checks and were all reviewed by a native speaker."
+ }
+}

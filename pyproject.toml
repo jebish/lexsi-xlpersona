@@ -1,0 +1,11 @@
+[project]
+name = "xlpersona"
+version = "0.1.0"
+description = "Script, not language: cross-lingual persona-jailbreak defences on Tiny Aya"
+requires-python = ">=3.10"
+
+[tool.setuptools]
+packages = ["xlpersona"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,120 @@
+{
+ "pooled_clean_forms": {
+  "cap_en_q99": {
+   "ref": {
+    "effect": 8.5,
+    "ci": [
+     3.0,
+     14.0
+    ]
+   },
+   "others": {
+    "effect": 0.67,
+    "ci": [
+     -3.0,
+     4.17
+    ]
+   },
+   "gap": {
+    "effect": 7.83,
+    "ci": [
+     1.33,
+     14.33
+    ]
+   },
+   "n_requests": 50
+  },
+  "cap_own_q99": {
+   "ref": {
+    "effect": 8.5,
+    "ci": [
+     3.0,
+     14.0
+    ]
+   },
+   "others": {
+    "effect": 5.83,
+    "ci": [
+     1.5,
+     10.17
+    ]
+   },
+   "gap": {
+    "effect": 2.67,
+    "ci": [
+     -3.83,
+     9.0
+    ]
+   },
+   "n_requests": 50
+  }
+ },
+ "prompt_review": {
+  "item/hi_rom/manual": {
+   "n": 3,
+   "wrong": 0
+  },
+  "item/hi_rom/random": {
+   "n": 20,
+   "wrong": 0
+  },
+  "item/ne_rom/manual": {
+   "n": 8,
+   "wrong": 0
+  },
+  "item/ne_rom/random": {
+   "n": 20,
+   "wrong": 6
+  },
+  "item/hi_cm/manual": {
+   "n": 15,
+   "wrong": 0
+  },
+  "item/hi_cm/random": {
+   "n": 20,
+   "wrong": 1
+  },
+  "item/ne_cm/manual": {
+   "n": 36,
+   "wrong": 0
+  },
+  "item/ne_cm/random": {
+   "n": 20,
+   "wrong": 14
+  },
+  "item/hi/translation": {
+   "n": 2,
+   "wrong": 0,
+   "note": "38 of the 40 sampled Devanagari rows were left unreviewed. The 2 marked rows (h057, b059) flag their romanized Hindi variants; their Devanagari is correct."
+  },
+  "template/hi_rom/random": {
+   "n": 8,
+   "wrong": 0
+  },
+  "template/ne_rom/random": {
+   "n": 8,
+   "wrong": 0
+  },
+  "template/hi_cm/random": {
+   "n": 8,
+   "wrong": 0
+  },
+  "template/ne_cm/random": {
+   "n": 8,
+   "wrong": 0
+  },
+  "template/hi/random": {
+   "n": 4,
+   "wrong": 0
+  },
+  "template/ne/random": {
+   "n": 4,
+   "wrong": 0
+  },
+  "item/hi_rom/extra": {
+   "n": 2,
+   "wrong": 2,
+   "note": "h057 and b059, flagged outside the random sample"
+  }
+ }
+}

@@ -1,0 +1,42 @@
+{
+ "rates": {
+  "author": {
+   "en": 0.46,
+   "hi": 0.36,
+   "ne": 0.22
+  },
+  "opposite_day": {
+   "en": 0.22,
+   "hi": 0.24,
+   "ne": 0.12
+  },
+  "villain_interview": {
+   "en": 0.82,
+   "hi": 0.72,
+   "ne": 0.44
+  },
+  "gm_npc": {
+   "en": 0.62,
+   "hi": 0.58,
+   "ne": 0.42
+  },
+  "grandma": {
+   "en": 0.0,
+   "hi": 0.44,
+   "ne": 0.28
+  },
+  "mad_scientist": {
+   "en": 0.28,
+   "hi": 0.2,
+   "ne": 0.1
+  }
+ },
+ "kept": [
+  "villain_interview",
+  "gm_npc",
+  "author",
+  "grandma"
+ ],
+ "n_per_cell": 50,
+ "kept_mean": 0.44666666666666666
+}

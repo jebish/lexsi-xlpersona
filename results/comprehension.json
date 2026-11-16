@@ -1,0 +1,26 @@
+{
+ "hi_rom": {
+  "n": 5,
+  "sensible": 4,
+  "score": 0.8,
+  "low_comprehension": false
+ },
+ "ne_rom": {
+  "n": 5,
+  "sensible": 4,
+  "score": 0.8,
+  "low_comprehension": false
+ },
+ "hi_cm": {
+  "n": 5,
+  "sensible": 4,
+  "score": 0.8,
+  "low_comprehension": false
+ },
+ "ne_cm": {
+  "n": 5,
+  "sensible": 5,
+  "score": 1.0,
+  "low_comprehension": false
+ }
+}
