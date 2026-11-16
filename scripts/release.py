@@ -53,6 +53,9 @@ configs:
 ---
 # persona-jailbreak-7c
 
+> **Content warning.** The prompts request harmful content, including self-harm, wrapped in persona jailbreaks.
+> Use them only to test and improve safety guardrails.
+
 Persona-jailbreak prompts in seven conditions (English; Hindi and Nepali in Devanagari, romanized and code-mixed)
 and Qwen3Guard labels for Tiny Aya Global under 14 guardrails.
 
