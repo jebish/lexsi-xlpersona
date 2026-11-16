@@ -1,7 +1,7 @@
 [project]
 name = "xlpersona"
 version = "0.1.0"
-description = "Script, not language: cross-lingual persona-jailbreak defences on Tiny Aya"
+description = "Persona-jailbreak guardrails in Hindi and Nepali on Tiny Aya Global"
 requires-python = ">=3.10"
 
 [tool.setuptools]

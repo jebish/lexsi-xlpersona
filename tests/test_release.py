@@ -26,13 +26,12 @@ def test_release_has_no_generations(rows, templates, tmp_path):
     assert any(p["template"] for p in t["prompts"]) and any(p["template"] is None for p in t["prompts"])
 
 
-def test_dataset_card_reports_final_judge_agreement_and_prompt_review():
+def test_dataset_card_is_minimal():
     from release import dataset_card
 
-    tables = {"prompts": [1, 2], "labels": [1]}
-    judge = {"safety": {"native": {"cohen_kappa": 0.6154}, "rom": {"cohen_kappa": 0.2}}}
-    review = {"item/ne_cm/random": {"n": 20, "wrong": 14}, "item/hi_rom/random": {"n": 20, "wrong": 0}}
-    card = dataset_card(tables, {"generator": "g"}, judge, review)
-    assert "native 0.615" in card and "rom 0.200" in card
-    assert "ne_cm 14/20" in card and "hi_rom 0/20" in card
-    assert "by hand" not in card and "pending" not in card and "not completed" not in card
+    card = dataset_card({"prompts": [1, 2], "labels": [1]})
+    assert "config_name: prompts" in card and "config_name: labels" in card
+    assert "2 prompts" in card and "1 rows" not in card and "1 labels" in card
+    assert "github.com/jebish/lexsi-xlpersona" in card
+    for word in ("withheld", "kappa", "Research use", "review", "not released"):
+        assert word not in card
