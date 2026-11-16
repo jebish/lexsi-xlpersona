@@ -24,7 +24,7 @@ Persona jailbreaks ("you are DAN", "write as the villain") are among the most wi
 
 We build a seven-condition benchmark on Tiny Aya Global, covering English and Hindi and Nepali in Devanagari, romanized and code-mixed form. It uses 100 harmful and 100 benign JailbreakBench requests, a find/test split, and 4 held-out persona templates. Romanized and code-mixed variants were generated with Gemma-3-27B and gated with CuratorKIT. For each condition we extract a persona direction (difference in means at layer 9 of 36) and compare 14 guardrails on held-out prompts. They cap activations along the English, own-condition, pooled or random direction, ablate the direction, or apply SafeTune's refusal-direction anchoring and contrastive activation addition (CAA). Qwen3Guard judges the replies with coherence and script filters, and AuditKIT measures capability on Global-MMLU. A native speaker validated the judge (Cohen's kappa 0.62 Devanagari, 0.63 code-mixed, 0.20 romanized) and reviewed the prompts.
 
-Code-mixed Hindi is the most jailbreakable condition, with 68% of persona prompts succeeding against 45% in English. The English direction recognises persona prompts in every form. It recovers 88-96% of each Hindi and Nepali condition's own persona-vs-plain separation, and 69% for romanized Nepali, while a random direction recovers at most 16%. Capping along it works best in English. It cuts jailbreak success by 8.5 points [95% CI 3.0, 14.0] in English, with no change in over-refusal and a 1-point MMLU drop, and by 1.3 points [-1.3, 3.8] pooled over the six Hindi and Nepali forms, a gap of 7.3 points [1.5, 13.1].
+Code-mixed Hindi is the most jailbreakable condition, with 68% of persona prompts succeeding against 45% in English. The English direction recognises persona prompts in every form. It recovers 88-96% of each condition's own persona-vs-plain separation in five of the six Hindi and Nepali forms, and 69% in romanized Nepali, while a random direction recovers at most 16%. Capping along it works best in English. It cuts jailbreak success by 8.5 points [95% CI 3.0, 14.0] in English, with no change in over-refusal and a 1-point MMLU drop, and by 1.3 points [-1.3, 3.8] pooled over the six Hindi and Nepali forms, a gap of 7.3 points [1.5, 13.1].
 
 A persona guardrail validated in English gives Hindi and Nepali users a fraction of its English protection, and thus guardrails should be built and tested per language.
 
@@ -44,7 +44,7 @@ A persona guardrail validated in English gives Hindi and Nepali users a fraction
 
 Tiny Aya Global (bf16), with difference-in-means persona directions at layer 9 capped/ablated at inference, compared against SafeTune refusal anchoring and CAA.
 
-> **For judges, in one minute.** We test seven conditions, English plus Hindi and Nepali in Devanagari, romanized and code-mixed form. The English persona direction detects persona prompts in all of them, recovering 88-96% of each form's own separation. Capping along it controls them mostly in English, cutting jailbreak success by 8.5 points there and by 1.3 elsewhere, and each language's own direction does at least as well outside English. Romanized Hindi and Nepali share English's script, yet their persona directions are the least similar to the English one. Against an attacker who retries, English capping changes little even in English, since 86% of requests still break with one of the four held-out templates. Code-mixed Hindi is the weakest point at 68% jailbreak success, and the defences that close it, anchoring and CAA, refuse most harmless requests.
+> **For judges, in one minute.** We test seven conditions, English plus Hindi and Nepali in Devanagari, romanized and code-mixed form. The English persona direction detects persona prompts in all of them, recovering 88-96% of each form's own separation in five of the six Hindi and Nepali forms and 69% in romanized Nepali. Capping along it controls them mostly in English, cutting jailbreak success by 8.5 points there and by 1.3 elsewhere, and each language's own direction does at least as well outside English. Romanized Hindi and Nepali share English's script, yet their persona directions are the least similar to the English one. Against an attacker who retries, English capping changes little even in English, since 86% of requests still break with one of the four held-out templates. Code-mixed Hindi is the weakest point at 68% jailbreak success, and the defences that close it, anchoring and CAA, refuse most harmless requests.
 
 ---
 
@@ -223,7 +223,7 @@ Every guardrail acts on the residual stream of the frozen model at inference.
 
 Each condition's persona direction is the difference in means of last-token residuals between persona-wrapped and plain harmful *find* requests. All conditions use one layer, chosen among layers 7-27 as the one where a direction from half of the English data best separates the other half, which is layer 9 of 36. We also build a pooled direction, the mean over conditions, and a random unit direction.
 
-Capping applies `x <- x - max(0, x.r - tau) r` on layers 5-13, with tau the 0.95, 0.99 or 0.999 quantile of the projection on plain *find* requests and the model's replies to them. We cap along the English direction at all three thresholds and along the own, pooled and random directions at q99. Directional ablation applies `x <- x - (x.r) r` at every layer, along the English, pooled and random directions. The orthogonalized model has the English direction projected out of the embeddings, attention outputs and MLP down-projections, and in float32 its greedy generations match hook ablation on all English, Hindi and Nepali test prompts.
+Capping applies `x <- x - max(0, x.r - tau) r` on layers 5-13, with tau the 0.95, 0.99 or 0.999 quantile of the projection on plain *find* requests and the model's replies to them. We cap along the English direction at all three thresholds and along the own, pooled and random directions at q99. Directional ablation applies `x <- x - (x.r) r` at every layer, along the English, pooled and random directions. The orthogonalized model has the English direction projected out of the embeddings, attention outputs and MLP down-projections, and in float32 its greedy generations match hook ablation on all 20 sampled English, Hindi and Nepali persona prompts (64 new tokens).
 
 #### CuratorKIT
 
@@ -449,7 +449,7 @@ Clone the repo, install the dependencies and run the tests, which need only a CP
 ```bash
 git clone https://github.com/jebish/lexsi-xlpersona
 cd lexsi-xlpersona
-pip install torch transformers==5.20.2 safetune==0.1.19 auditkit==1.1.11 curatorkit==0.1.27 modal datasets numpy scikit-learn pytest
+pip install torch transformers==5.20.2 safetune==0.1.19 auditkit==1.1.11 curatorkit==0.1.27 modal datasets numpy scikit-learn matplotlib pytest
 python -m pytest -q
 ```
 
@@ -507,6 +507,7 @@ python -m modal run modal_app.py --script push_ablated.py --args "--repo <hf-mod
 ```
 lexsi-xlpersona/
 ├── README.md
+├── LICENSE
 ├── pyproject.toml
 ├── modal_app.py
 ├── data/
@@ -585,7 +586,7 @@ lexsi-xlpersona/
 
 ## Declaration of work done outside the hackathon
 
-All work was done during the hackathon, Nov 14-16 2026.
+All work was done during the hackathon, Nov 10-15 2026.
 
 ---
 
@@ -634,7 +635,7 @@ Held-out prompts, layer 9.
 
 ### Security considerations
 
-The orthogonalized model has the English persona direction removed from its weights. It is no easier to jailbreak than the base model, and no condition changes significantly.
+The orthogonalized model has the English persona direction removed from its weights. Its generations match hook ablation on the 20 prompts we checked, and under hook ablation no condition becomes significantly easier to jailbreak.
 
 ---
 
